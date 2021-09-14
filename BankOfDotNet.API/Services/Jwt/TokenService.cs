@@ -1,5 +1,5 @@
-﻿using BankOfDotNet.Data.Entity;
-using BankOfDotNet.Data.Log;
+﻿using BankOfDotNet.API.Data.Log;
+using BankOfDotNet.Data.Entity;
 using BankOfDotNet.Services.Jwt;
 using IdentiyServerCustom.Data;
 using Microsoft.AspNetCore.Http;
@@ -68,29 +68,29 @@ namespace IdentiyServerCustom.Services.Jwt
                 var headers =  _httpContextAccessor.HttpContext.Request.Headers;
 
 
-                log = new IdentiyUserLog
-                {
-                    Method = request.Request.Method,
-                    Host = request.Request.Host.Value,
-                    Path = request.Request.Path.Value,
-                    Protocol = request.Request.Protocol,
-                    PathBase = request.Request.PathBase,
-                    IsHttps = request.Request.IsHttps,
-                    Language = headers.Where(x => x.Key == "Accept-Language").FirstOrDefault().Value.FirstOrDefault().ToString(),
-                    Authorization = headers.Where(x => x.Key == "Authorization").FirstOrDefault().Value.FirstOrDefault().ToString(),
-                    ReferUrl = headers.Where(x => x.Key == "Referer").FirstOrDefault().Value.FirstOrDefault().ToString(),
-                    Agent = headers.Where(x => x.Key == "User-Agent").FirstOrDefault().Value.FirstOrDefault().ToString(),
-                    RequestDevice = headers.Where(x => x.Key == "sec-ch-ua").FirstOrDefault().Value.FirstOrDefault().ToString(),
-                    RequestMobileDevice = headers.Where(x => x.Key == "sec-ch-ua-mobile").FirstOrDefault().Value.FirstOrDefault().ToString(),
-                    OS = headers.Where(x => x.Key == "sec-ch-ua-platform").FirstOrDefault().Value.FirstOrDefault().ToString(),
-                    FetchSite = headers.Where(x => x.Key == "sec-fetch-site").FirstOrDefault().Value.FirstOrDefault().ToString(),
-                    FetchMode = headers.Where(x => x.Key == "sec-fetch-mode").FirstOrDefault().Value.FirstOrDefault().ToString(),
-                    IpAddress = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString(),
-                    CreatedAt = DateTime.Now,
-                    UpdatedAt = null,
-                    Status = 1
+                //log = new IdentiyUserLog
+                //{
+                //    Method = request.Request.Method,
+                //    Host = request.Request.Host.Value,
+                //    Path = request.Request.Path.Value,
+                //    Protocol = request.Request.Protocol,
+                //    PathBase = request.Request.PathBase,
+                //    IsHttps = request.Request.IsHttps,
+                //    Language = headers.Where(x => x.Key == "Accept-Language").FirstOrDefault().Value.FirstOrDefault().ToString(),
+                //    Authorization = headers.Where(x => x.Key == "Authorization").FirstOrDefault().Value.FirstOrDefault().ToString(),
+                //    ReferUrl = headers.Where(x => x.Key == "Referer").FirstOrDefault().Value.FirstOrDefault().ToString(),
+                //    Agent = headers.Where(x => x.Key == "User-Agent").FirstOrDefault().Value.FirstOrDefault().ToString(),
+                //    RequestDevice = headers.Where(x => x.Key == "sec-ch-ua").FirstOrDefault().Value.FirstOrDefault().ToString(),
+                //    RequestMobileDevice = headers.Where(x => x.Key == "sec-ch-ua-mobile").FirstOrDefault().Value.FirstOrDefault().ToString(),
+                //    OS = headers.Where(x => x.Key == "sec-ch-ua-platform").FirstOrDefault().Value.FirstOrDefault().ToString(),
+                //    FetchSite = headers.Where(x => x.Key == "sec-fetch-site").FirstOrDefault().Value.FirstOrDefault().ToString(),
+                //    FetchMode = headers.Where(x => x.Key == "sec-fetch-mode").FirstOrDefault().Value.FirstOrDefault().ToString(),
+                //    IpAddress = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString(),
+                //    CreatedAt = DateTime.Now,
+                //    UpdatedAt = null,
+                //    Status = 1
 
-                };
+                //};
 
                 var mySecret = Encoding.UTF8.GetBytes(key);
                 var mySecurityKey = new SymmetricSecurityKey(mySecret);

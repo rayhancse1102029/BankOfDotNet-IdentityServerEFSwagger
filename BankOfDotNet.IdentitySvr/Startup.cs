@@ -33,9 +33,9 @@ namespace BankOfDotNet.IdentitySvr
 
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
-                //.AddInMemoryIdentityResources(Config.GetIdentityResources())
-                //.AddInMemoryApiResources(Config.GetAllApiResources())
-                //.AddInMemoryClients(Config.GetClients())
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryApiResources(Config.GetAllApiResources())
+                .AddInMemoryClients(Config.GetClients())
                 .AddTestUsers(Config.GetUsers())
                 //Configuration Store: clients and resources
                 .AddConfigurationStore(options =>
@@ -58,7 +58,7 @@ namespace BankOfDotNet.IdentitySvr
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //InitializeIdentityServerDatabase(app);
+            InitializeIdentityServerDatabase(app);
 
             if (env.IsDevelopment())
             {

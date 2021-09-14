@@ -1,5 +1,5 @@
-﻿using BankOfDotNet.Data.Entity;
-using BankOfDotNet.Data.Log;
+﻿using BankOfDotNet.API.Data.Log;
+using BankOfDotNet.Data.Entity;
 using IdentiyServerCustom.Data.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;

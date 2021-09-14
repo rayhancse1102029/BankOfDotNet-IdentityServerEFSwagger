@@ -9,10 +9,12 @@ using IdentiyServerCustom.Services.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
@@ -62,6 +64,13 @@ namespace BankOfDotNet.API
                     options.ApiName = "bankOfDotNetApi";
                 });
 
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.TryAddSingleton<HttpContext, HttpContext>();
+
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromDays(3);
+            });
+
             services.AddDbContext<BankContext>(opts =>
                 opts.UseInMemoryDatabase("BankingDb"));
 
@@ -98,6 +107,7 @@ namespace BankOfDotNet.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSession();
             app.UseAuthentication();
 
             app.UseSwagger();
